@@ -12,7 +12,9 @@ function ToastShelf() {
       aria-live="polite"
       aria-label="Notification">
       {toastArr.map(({id, variant, message}) => {
-        return <Toast key={id} id={id} variant={variant}><p>{message}</p></Toast>
+        return (<li key={id}>
+          <Toast id={id} variant={variant}><p>{message}</p></Toast>
+        </li>)
       })}
     </ol>
   );
