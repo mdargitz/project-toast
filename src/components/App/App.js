@@ -5,6 +5,7 @@ import Footer from '../Footer';
 import ToastProvider from '../ToastProvider/ToastProvider';
 
 function App() {
+
   return (
     <>
     <ToastProvider>
