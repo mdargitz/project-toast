@@ -18,13 +18,25 @@ function ToastProvider({children}) {
     setToastArr(() => nextToastArr);
   }
 
-  const value = React.useMemo(() => {
-    return {toastArr, setToastArr, addNewToast, removeToast}
-  }, [toastArr, setToastArr])
+  // const value = React.useMemo(() => {
+  //   return {toastArr, setToastArr, addNewToast, removeToast}
+  // }, [toastArr, setToastArr])
+
+  React.useEffect(() => {
+    const handleEscpeKeyPress = (event) => {
+      if (event.key === 'Escape') {
+        setToastArr(() => []); // clear toasts array
+      }
+    }
+
+    document.addEventListener('keydown', handleEscpeKeyPress);
+
+    return () => document.removeEventListener('keydown', handleEscpeKeyPress);
+  }, [])
 
 
   return (
-    <ToastContext value={value}>
+    <ToastContext value={{toastArr, addNewToast, removeToast}}>
       {children}
     </ToastContext>
   );
